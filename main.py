@@ -24,17 +24,16 @@ async def on_member_join(member):
         embed.set_thumbnail(url=member.display_avatar.url)
         await channel.send(embed=embed)
 
-# ───── МОДЕРАЦИЯ ─────
 
 @bot.command()
 @commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member, *):
+async def kick(ctx, member: discord.Member, *, reason=""):
     await member.kick(reason=reason)
     await ctx.send(f"{member.mention} был кикнут.")
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
-async def ban(ctx, member: discord.Member, *, reason="Причина не указана"):
+async def ban(ctx, member: discord.Member, *, reason=""):
     await member.ban(reason=reason)
     await ctx.send(f"{member.mention} был забанен. Причина: {reason}")
 
@@ -46,14 +45,14 @@ async def clear(ctx, amount: int = 100):
 
 @bot.command()
 @commands.has_permissions(moderate_members=True)
-async def mute(ctx, member: discord.Member, *):
+async def mute(ctx, member: discord.Member, *, reason=""):
     mute_role = discord.utils.get(ctx.guild.roles, name="Muted")
     if not mute_role:
         mute_role = await ctx.guild.create_role(name="Muted")
         for channel in ctx.guild.channels:
             await channel.set_permissions(mute_role, send_messages=False)
     await member.add_roles(mute_role)
-    await ctx.send(f"{member.mention} замьючен.")
+    await ctx.send(f"{member.mention} замьючен. По причине {reason}")
 
 @bot.event
 async def on_ready():
