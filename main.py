@@ -1,10 +1,10 @@
 import discord
+import os
 from discord.ext import commands
-from cfg import BOT_TOKEN, WOLCOME_CHANNEL_ID
 
-TOKEN = BOT_TOKEN
+TOKEN = os.environ.get("BOT_TOKEN")
 PREFIX = "!PN"
-WELCOME_CHANNEL_ID = WELCOME_ID
+WELCOME_CHANNEL_ID = int(os.environ.get("WELCOME_ID"))
 
 intents = discord.Intents.default()
 intents.members = True
