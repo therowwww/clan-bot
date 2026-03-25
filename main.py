@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 
 TOKEN = os.environ.get("BOT_TOKEN")
-PREFIX = "!PN"
+PREFIX = "@"
 WELCOME_CHANNEL_ID = int(os.environ.get("WELCOME_ID"))
 
 intents = discord.Intents.default()
