@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from config import BOT_TOKEN, WOLCOME_CHANNEL_ID
 
 TOKEN = BOT_TOKEN
 PREFIX = "!PN"
